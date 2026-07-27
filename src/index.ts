@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 
 import { registerGreetTool } from "./tools/greet.js";
+import { registerAddTaskTool } from "./tools/add-task.js";
 // Week 2: import and register your project tools here, for example:
 // import { registerSearchNotesTool } from "./tools/search-notes.js";
 // import { registerListNotesTool } from "./tools/list-notes.js";
@@ -21,6 +22,7 @@ function createServer(): McpServer {
   registerGreetTool(server);
 
   // Week 2 — register your multi-tool skeleton (stubs are OK)
+  registerAddTaskTool(server);
   // registerSearchNotesTool(server);
   // registerListNotesTool(server);
   // registerAddNoteTool(server);

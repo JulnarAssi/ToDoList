@@ -8,10 +8,10 @@ import { greetInputSchema } from "../schemas/greet.js";
  */
 export function registerGreetTool(server: McpServer): void {
   server.registerTool(
-    "greet",
+    "maysam_greet",
     {
       description:
-        "Return a short greeting for a person. Use this to verify the MCP server is running.",
+        "A custom greeting tool by Maysam Abu Eid to verify the MCP server is running.",
       inputSchema: greetInputSchema,
     },
     async ({ name }) => {
