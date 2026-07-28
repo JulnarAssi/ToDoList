@@ -70,11 +70,11 @@ You succeed on Demo Day if:
 
 ## 7. Evidence for Week 2
 
-- [ ] `docs/project-choice.md` filled
+- [x] `docs/project-choice.md` filled
 - [ ] ≥3 Zod schemas under `src/schemas/`
-- [ ] Tools registered (stubs OK)
+- [x] Tools registered (stubs OK)
 - [ ] `examples/<tool>.json` for each registered tool
-- [ ] Inspector screenshots attached to the GitHub Issue
+- [x] Inspector screenshots attached to the GitHub Issue
 
 ## Mentor decision
 
