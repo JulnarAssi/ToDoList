@@ -72,9 +72,9 @@ You succeed on Demo Day if:
 
 - [X] `docs/project-choice.md` filled
 - [ ] ≥3 Zod schemas under `src/schemas/`
-- [ X ] Tools registered (stubs OK)
+- [X] Tools registered (stubs OK)
 - [ ] `examples/<tool>.json` for each registered tool
-- [x] Inspector screenshots attached to the GitHub Issue
+- [X] Inspector screenshots attached to the GitHub Issue
 
 ## Mentor decision
 
