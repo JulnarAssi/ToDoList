@@ -1,23 +1,23 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 
-import { completeTaskTool } from "./tools/complete_task.js";
+import { registerAddTaskTool } from "./tools/add-task.js";
 
 /**
- * Factory used by stdio so every connection gets a fresh server.
- * Register all tools inside this function.
+ * Factory used by stdio (and later HTTP) so every connection gets a fresh server.
+ * Register all tools inside this function — never on a shared global instance.
  */
 function createServer(): McpServer {
   const server = new McpServer({
-    name: "todo-list-mcp",
+    name: "mcprepo",
     version: "0.1.0",
   });
 
-  completeTaskTool(server);
+  // Register only your addTask tool
+  registerAddTaskTool(server);
 
   return server;
 }
 
 void serveStdio(createServer);
-
-console.error("To-Do List MCP server running on stdio");
+console.error("mcprepo MCP server running on stdio");
