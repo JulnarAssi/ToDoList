@@ -1,32 +1,23 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 
-import {  registerHelloTool } from "./tools/greet.js";
-// Week 2: import and register your project tools here, for example:
-// import { registerSearchNotesTool } from "./tools/search-notes.js";
-// import { registerListNotesTool } from "./tools/list-notes.js";
-// import { registerAddNoteTool } from "./tools/add-note.js";
+import { completeTaskTool } from "./tools/complete_task.js";
 
 /**
- * Factory used by stdio (and later HTTP) so every connection gets a fresh server.
- * Register all tools inside this function — never on a shared global instance.
+ * Factory used by stdio so every connection gets a fresh server.
+ * Register all tools inside this function.
  */
 function createServer(): McpServer {
   const server = new McpServer({
-    name: "mcprepo",
+    name: "todo-list-mcp",
     version: "0.1.0",
   });
 
-  // Week 1 — one working tool so you can verify Inspector immediately
-  registerHelloTool(server);
-
-  // Week 2 — register your multi-tool skeleton (stubs are OK)
-  // registerSearchNotesTool(server);
-  // registerListNotesTool(server);
-  // registerAddNoteTool(server);
+  completeTaskTool(server);
 
   return server;
 }
 
 void serveStdio(createServer);
-console.error("mcprepo MCP server running on stdio");
+
+console.error("To-Do List MCP server running on stdio");
