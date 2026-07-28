@@ -3,7 +3,7 @@
 > Mandatory for mentor review. Open a GitHub Issue linking to this file before Week 3.
 
 **Student:** Maysam AbuEid || Julnar Assi || Lana Says 
-**Repo:**  
+**Repo:**  https://github.com/JulnarAssi/ToDoList.git
 **Branch:** `week-2-design`  
 **GitHub Issue:**  
 
