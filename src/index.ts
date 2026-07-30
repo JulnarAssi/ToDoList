@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 
 import { registerAddTaskTool } from "./tools/add-task.js";
+import { registerDeleteTaskTool } from "./tools/delete-task.js";
 
 /**
  * Factory used by stdio (and later HTTP) so every connection gets a fresh server.
@@ -13,8 +14,9 @@ function createServer(): McpServer {
     version: "0.1.0",
   });
 
-  // Register only your addTask tool
+  // Register  tools
   registerAddTaskTool(server);
+   registerDeleteTaskTool(server);
 
   return server;
 }
