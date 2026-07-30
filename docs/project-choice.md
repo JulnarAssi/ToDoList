@@ -2,19 +2,21 @@
 
 > Complete in Week 2. One sentence only for the pitch line — expand details below if needed.
 
+## Team members
+
+- Julnar Assi
+- Lana Says
+- Maysam Abu-Eid
+
 ## Pitch (required)
 
-I am building **X** for **Y** so that **Z**.
-
-<!-- Example:
-I am building a Notes & FAQ Search MCP for classmates so that they can ask an AI host to find answers in our course notes without leaving the chat.
--->
+We are building a **To-Do List MCP** for **students and individuals** so that **they can create, organize, search, update, and complete their daily tasks using an AI assistant**.
 
 ## Starter selected
 
 - [ ] Notes & FAQ Search
 - [ ] Personal Expense Tracker
-- [ ] To-Do List
+- [x] To-Do List
 - [ ] Weather Briefing
 - [ ] Quote of the Day
 - [ ] Other (mentor-approved): _______________
@@ -23,14 +25,13 @@ I am building a Notes & FAQ Search MCP for classmates so that they can ask an AI
 
 | Criterion | Score | Notes |
 | --- | --- | --- |
-| Personal interest |  |  |
-| Offline / free-API demoability |  |  |
-| No paid API keys required |  |  |
-| Fits in four remaining build weeks |  |  |
+| Personal interest | 5 | Our team is interested in building a useful tool for organizing daily tasks. |
+| Offline / free-API demoability | 5 | The project can store tasks locally and does not require an internet connection during the demo. |
+| No paid API keys required | 5 | The project does not need paid APIs or external services. |
+| Fits in four remaining build weeks | 5 | The project has a clear and manageable scope for the remaining weeks. |
 
-## Why this one (3–5 sentences)
 
-<!-- Write here -->
+Our team selected the To-Do List MCP because it is simple, useful, and suitable for students and people who want to organize their daily responsibilities. The project can work locally without paid APIs or cloud services. It allows us to build clear MCP tools such as `add_task`, `list_tasks`, `complete_task`, `update_task`, `search_tasks`, and `delete_task`. The project scope is manageable, and we can clearly demonstrate the main workflow using MCP Inspector.
 
 ## Mentor notes
 
