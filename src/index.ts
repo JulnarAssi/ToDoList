@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 
 import { registerAddTaskTool } from "./tools/add-task.js";
+import { registerDeleteTaskTool } from "./tools/delete-task.js";
 import { registerCompleteTaskTool } from "./tools/complete_task.js";
 import { registerSearchTasksTool } from "./tools/search_task.js";
 
@@ -11,7 +12,9 @@ function createServer(): McpServer {
     version: "0.2.0",
   });
 
+  // Register tools
   registerAddTaskTool(server);
+  registerDeleteTaskTool(server);
   registerCompleteTaskTool(server);
   registerSearchTasksTool(server);
 

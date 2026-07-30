@@ -12,17 +12,18 @@ export function registerAddTaskTool(server: McpServer): void {
       inputSchema: addTaskInputSchema,
     },
     async ({ title, description }) => {
+      // Week 2: stub only — Week 3 replaces this with real data
       return {
         content: [
           {
             type: "text",
             text: JSON.stringify(
               {
+                ok: true,
                 stub: true,
                 tool: "add_task",
                 title,
                 descriptionPreview: description ? description.slice(0, 80) : "",
-                message: "Replace this stub with real task creation logic.",
               },
               null,
               2,
