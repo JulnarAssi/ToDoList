@@ -3,7 +3,7 @@ import type { McpServer } from "@modelcontextprotocol/server";
 import { completeTaskInputSchema } from "../schemas/complete_task.js";
 
 /** EXAMPLE Week 2 stub — append a new note (P0 candidate). */
-export function completeTaskTool(server: McpServer): void {
+export function registerCompleteTaskTool(server: McpServer): void {
   server.registerTool(
     "complete_task",
     {
