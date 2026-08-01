@@ -76,6 +76,14 @@ You succeed on Demo Day if:
 - [ ] `examples/<tool>.json` for each registered tool
 - [X] Inspector screenshots attached to the GitHub Issue
 
+## Notes from reading the official MCP server
+
+- Tool names are short, descriptive, and clearly explain what each tool does (e.g., Filesystem, Git, Memory, Time).
+- Each server has a simple description that explains its main purpose in one sentence.
+- The project is organized into separate folders, making it easy to find and maintain each server.
+- The README provides clear setup instructions with examples for running and configuring the servers.
+- The documentation clearly explains that the reference servers are educational examples and not production-ready applications.
+
 ## Mentor decision
 
 - Status: pending / approved / changes requested
