@@ -1,36 +1,58 @@
 import type { McpServer } from "@modelcontextprotocol/server";
-
 import { addTaskInputSchema } from "../schemas/add-task.js";
+import { readTasks, writeTasks, type Task } from "../lib/file.js";
 
-/** Week 2 stub — add a new task to the to-do list. */
+/** Week 3 — add a new task to the to-do list, persisted to data/tasks.json. */
 export function registerAddTaskTool(server: McpServer): void {
   server.registerTool(
     "add_task",
     {
       description:
-        "Create a new task with a title and description for the to-do list.",
+        "Create a new task with a title, optional priority, and optional due date. Saves it to the task list and returns the saved task with its generated ID.",
       inputSchema: addTaskInputSchema,
     },
-    async ({ title, description }) => {
-      // Week 2: stub only — Week 3 replaces this with real data
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(
-              {
-                ok: true,
-                stub: true,
-                tool: "add_task",
-                title,
-                descriptionPreview: description ? description.slice(0, 80) : "",
-              },
-              null,
-              2,
-            ),
-          },
-        ],
-      };
+    async ({ title, priority, due_date }) => {
+      try {
+        const tasks = await readTasks();
+
+        const newTask: Task = {
+          id: Date.now().toString(),
+          title,
+          priority: priority ?? "medium",
+          completed: false,
+          ...(due_date ? { due_date } : {}),
+        };
+
+        tasks.push(newTask);
+        await writeTasks(tasks);
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                { ok: true, tool: "add_task", task: newTask },
+                null,
+                2,
+              ),
+            },
+          ],
+        };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                { ok: false, tool: "add_task", error: "Failed to add task." },
+                null,
+                2,
+              ),
+            },
+          ],
+          isError: true,
+        };
+      }
     },
   );
 }
