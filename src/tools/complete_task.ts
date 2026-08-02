@@ -1,38 +1,82 @@
 import type { McpServer } from "@modelcontextprotocol/server";
 
 import { completeTaskInputSchema } from "../schemas/complete_task.js";
+import { readTasks, writeTasks } from "../lib/file.js";
 
-/** EXAMPLE Week 2 stub — append a new note (P0 candidate). */
-export function completeTaskTool(server: McpServer): void {
+/** Register the complete_task P0 tool. */
+export function registerCompleteTaskTool(server: McpServer): void {
   server.registerTool(
     "complete_task",
     {
       description:
-        "Mark an existance task as completed using its task ID and return the updated task.",
+        "Mark an existing task as completed using its task ID and return the updated task.",
       inputSchema: completeTaskInputSchema,
     },
     async ({ id }) => {
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(
+      try {
+        const tasks = await readTasks();
+
+        const task = tasks.find((currentTask) => currentTask.id === id);
+
+        if (!task) {
+          return {
+            content: [
               {
-                stub: true,
-                tool: "complete_task",
-                task: {
-                    id,
-                    completed: true,
-                },
-                message:
-                    "The task was marked as completed. replace this stub with the real task storge logic in week 3."
+                type: "text",
+                text: JSON.stringify(
+                  {
+                    success: false,
+                    message: `Task with ID ${id} was not found.`,
+                  },
+                  null,
+                  2,
+                ),
               },
-              null,
-              2,
-            ),
-          },
-        ],
-      };
+            ],
+            isError: true,
+          };
+        }
+
+        task.completed = true;
+
+        await writeTasks(tasks);
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  success: true,
+                  message: "The task was marked as completed.",
+                  task,
+                },
+                null,
+                2,
+              ),
+            },
+          ],
+        };
+      } catch (error) {
+        console.error("complete_task failed:", error);
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  success: false,
+                  message: "Unable to complete the task.",
+                },
+                null,
+                2,
+              ),
+            },
+          ],
+          isError: true,
+        };
+      }
     },
   );
 }
