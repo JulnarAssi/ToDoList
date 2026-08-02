@@ -16,7 +16,7 @@ export function registerAddTaskTool(server: McpServer): void {
         const tasks = await readTasks();
 
         const newTask: Task = {
-          id: Date.now().toString(),
+          id: Math.floor(1000000 + Math.random() * 9000000).toString(),
           title,
           priority: priority ?? "medium",
           completed: false,
