@@ -11,3 +11,4 @@
 - All P0 tools use the same local JSON fixture at `data/tasks.json`.
 - The project does not require authentication, paid APIs, or an internet connection.
 - Local file access has no API rate limit.
+- This project uses a local JSON fixture instead of an HTTP API, so an HTTP timeout helper is not required. Safe file reading, JSON parsing, Zod validation, and error handling are implemented in `src/lib/file.ts`.
