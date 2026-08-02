@@ -7,9 +7,12 @@ export const addTaskInputSchema = z.object({
     .min(1)
     .max(200)
     .describe("The title of the task"),
-  description: z
-    .string()
-    .max(1000)
+  priority: z
+    .enum(["high", "medium", "low"])
     .optional()
-    .describe("An optional description for the task"),
+    .describe("Priority level of the task, defaults to 'medium' if not provided"),
+  due_date: z
+    .string()
+    .optional()
+    .describe("Optional due date for the task, in YYYY-MM-DD format"),
 });

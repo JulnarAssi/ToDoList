@@ -1,4 +1,5 @@
 {
   "title": "Buy groceries",
-  "description": "Milk, eggs, bread, and coffee"
+  "priority": "high",
+  "due_date": "2026-08-10"
 }
