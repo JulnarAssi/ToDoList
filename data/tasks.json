@@ -11,16 +11,12 @@
     "priority": "high",
     "completed": false
   },
+ 
   {
-    "id": "1234567",
-    "title": "Test task for delete",
-    "priority": "low",
-    "completed": false
-  },
-  {
-    "id": "7302008",
-    "title": "test",
-    "priority": "low",
-    "completed": true
+    "id": "5811741",
+    "title": "Prepare for Week 3 demo",
+    "priority": "medium",
+    "completed": false,
+    "due_date": "2026-08-06"
   }
 ]
