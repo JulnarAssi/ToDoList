@@ -10,10 +10,10 @@ import { registerListTasksTool } from "./tools/list_tasks.js";
 function createServer(): McpServer {
   const server = new McpServer({
     name: "todo-list-mcp",
-    version: "0.2.0",
+    version: "0.1.0",
   });
 
-  // Register toolsZ
+  // Register tools
   registerAddTaskTool(server);
   registerDeleteTaskTool(server);
   registerCompleteTaskTool(server);
