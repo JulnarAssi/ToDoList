@@ -5,6 +5,7 @@ import { registerAddTaskTool } from "./tools/add-task.js";
 import { registerDeleteTaskTool } from "./tools/delete-task.js";
 import { registerCompleteTaskTool } from "./tools/complete_task.js";
 import { registerSearchTasksTool } from "./tools/search_task.js";
+import { registerListTasksTool } from "./tools/list_tasks.js";
 
 function createServer(): McpServer {
   const server = new McpServer({
@@ -12,11 +13,12 @@ function createServer(): McpServer {
     version: "0.2.0",
   });
 
-  // Register tools
+  // Register toolsZ
   registerAddTaskTool(server);
   registerDeleteTaskTool(server);
   registerCompleteTaskTool(server);
   registerSearchTasksTool(server);
+  registerListTasksTool(server);
 
   return server;
 }

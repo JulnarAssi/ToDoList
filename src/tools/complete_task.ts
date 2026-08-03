@@ -2,13 +2,13 @@ import type { McpServer } from "@modelcontextprotocol/server";
 
 import { completeTaskInputSchema } from "../schemas/complete_task.js";
 
-/** EXAMPLE Week 2 stub — append a new note (P0 candidate). */
-export function completeTaskTool(server: McpServer): void {
+// Week 2 stub — marks a task as completed.
+export function registerCompleteTaskTool(server: McpServer): void {
   server.registerTool(
     "complete_task",
     {
       description:
-        "Mark an existance task as completed using its task ID and return the updated task.",
+        "Marks an existing task as completed using its task ID and returns the updated task.",
       inputSchema: completeTaskInputSchema,
     },
     async ({ id }) => {
@@ -21,11 +21,11 @@ export function completeTaskTool(server: McpServer): void {
                 stub: true,
                 tool: "complete_task",
                 task: {
-                    id,
-                    completed: true,
+                  id,
+                  completed: true,
                 },
                 message:
-                    "The task was marked as completed. replace this stub with the real task storge logic in week 3."
+                  "The task was marked as completed. Replace this stub with the real task storage logic in Week 3.",
               },
               null,
               2,
