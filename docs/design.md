@@ -84,6 +84,12 @@ You succeed on Demo Day if:
 - The README provides clear setup instructions with examples for running and configuring the servers.
 - The documentation clearly explains that the reference servers are educational examples and not production-ready applications.
 
+## Resources (Week 5+)
+
+Read-only MCP resources are planned for a future milestone.
+
+The current project focuses on implementing the required P0 tools with real local data. Static resources, such as task documentation or a user guide, will be added in a later phase after the core functionality is complete.
+
 ## Mentor decision
 
 - Status: pending / approved / changes requested
