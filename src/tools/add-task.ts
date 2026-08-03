@@ -39,6 +39,7 @@ export function registerAddTaskTool(server: McpServer): void {
           ],
         };
       } catch (error) {
+        console.error("add_task failed:", error);
         return {
           content: [
             {

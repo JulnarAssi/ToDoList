@@ -48,6 +48,7 @@ export function registerDeleteTaskTool(server: McpServer): void {
           ],
         };
       } catch (error) {
+        console.error("delete_task failed:", error);
         return {
           content: [
             {
