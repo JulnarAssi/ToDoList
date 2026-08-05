@@ -1,7 +1,9 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { registerTasksInfoResource } from "./resources/tasks-info.js";
 
 import { registerAddTaskTool } from "./tools/add-task.js";
+import { registerDeleteTaskTool } from "./tools/delete-task.js";
 import { registerCompleteTaskTool } from "./tools/complete_task.js";
 import { registerSearchTasksTool } from "./tools/search_task.js";
 
@@ -12,8 +14,10 @@ function createServer(): McpServer {
   });
 
   registerAddTaskTool(server);
+  registerDeleteTaskTool(server);
   registerCompleteTaskTool(server);
   registerSearchTasksTool(server);
+  registerTasksInfoResource(server);
 
   return server;
 }

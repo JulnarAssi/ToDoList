@@ -4,5 +4,19 @@
     "title": "Finish MCP assignment",
     "priority": "high",
     "completed": true
+  },
+  {
+    "id": "1220675",
+    "title": "Submit Week 3 MCP tools",
+    "priority": "high",
+    "completed": false
+  },
+ 
+  {
+    "id": "5811741",
+    "title": "Prepare for Week 3 demo",
+    "priority": "medium",
+    "completed": false,
+    "due_date": "2026-08-06"
   }
 ]
