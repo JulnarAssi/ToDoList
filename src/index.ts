@@ -7,6 +7,7 @@ import { registerDeleteTaskTool } from "./tools/delete-task.js";
 import { registerCompleteTaskTool } from "./tools/complete_task.js";
 import { registerSearchTasksTool } from "./tools/search_task.js";
 import { registerListTasksTool } from "./tools/list_tasks.js";
+import { registerUpdateTaskTool } from "./tools/update-task.js";
 
 function createServer(): McpServer {
   const server = new McpServer({
@@ -19,6 +20,7 @@ function createServer(): McpServer {
   registerCompleteTaskTool(server);
   registerSearchTasksTool(server);
   registerListTasksTool(server);
+  registerUpdateTaskTool(server);
 
   // Register the read-only resource
   registerTasksInfoResource(server);
