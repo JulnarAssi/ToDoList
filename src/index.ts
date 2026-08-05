@@ -14,12 +14,14 @@ function createServer(): McpServer {
     version: "0.1.0",
   });
 
-  // Register tools
   registerAddTaskTool(server);
   registerDeleteTaskTool(server);
   registerCompleteTaskTool(server);
   registerSearchTasksTool(server);
   registerListTasksTool(server);
+
+  // Register the read-only resource
+  registerTasksInfoResource(server);
 
   return server;
 }
