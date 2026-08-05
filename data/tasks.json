@@ -11,12 +11,17 @@
     "priority": "high",
     "completed": false
   },
- 
   {
     "id": "5811741",
     "title": "Prepare for Week 3 demo",
     "priority": "medium",
     "completed": false,
     "due_date": "2026-08-06"
+  },
+  {
+    "id": "2969585",
+    "title": "edit the photos ",
+    "priority": "low",
+    "completed": false
   }
 ]
