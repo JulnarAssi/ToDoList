@@ -1,62 +1,86 @@
-import { readFile, writeFile } from "node:fs/promises";    
+import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { z } from "zod";
 
-// each task must follow this formula : 
+// Each task must follow this structure.
 const taskSchema = z.object({
-    id: z.string(),
-    title: z.string(),
-    priority: z.enum(["high", "medium", "low"]),
-    completed: z.boolean(),
-    due_date: z.string().optional(),
+  id: z
+    .string()
+    .length(7, "Task ID must contain exactly 7 digits.")
+    .regex(/^\d+$/, "Task ID must contain numbers only."),
+
+  title: z
+    .string()
+    .min(1, "Task title cannot be empty.")
+    .max(200, "Task title must be 200 characters or fewer."),
+
+  priority: z.enum(["high", "medium", "low"]),
+
+  completed: z.boolean(),
+
+  due_date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Due date must use YYYY-MM-DD format.")
+    .optional(),
 });
 
-// array of:
 const tasksSchema = z.array(taskSchema);
 
-// to let the typescript conclued the task formula Automatically from the zod schema 
 export type Task = z.infer<typeof taskSchema>;
 
-// detect the file path
-const tasksFilePath = resolve(
-    process.cwd(),
-    "data",
-    "tasks.json",
-);
+// Allowed data directory.
+const dataDirectory = resolve(process.cwd(), "data");
 
-//reading function that returns tasks from the array.
-export async function readTasks(): Promise<Task[]>{
+// Fixed tasks file.
+const tasksFilePath = resolve(dataDirectory, "tasks.json");
 
-    try{ 
+// Security check: make sure the file stays inside ./data.
+function ensureSafeDataPath(filePath: string): string {
+  const resolvedPath = resolve(filePath);
 
-    const fileContent = await readFile(tasksFilePath, "utf-8");     // read the file as a text file
+  if (!resolvedPath.startsWith(dataDirectory)) {
+    throw new Error("Unsafe file path rejected.");
+  }
 
-    if (fileContent.trim() === "") {        // handling the error by returning empty an array
-        return [];
-      }
-
-    const parseData: unknown = JSON.parse(fileContent);     // convert the text into a json, unknown is for check the data before use 
-
-    return tasksSchema.parse(parseData);     // check the data using zod shcema, if thers an issue the zod returns a error message.
-    
-    }catch(error){
-     console.error("readTask failed:", error);
-     throw new Error("Unable to read the tasks data file.");
-
-    }
+  return resolvedPath;
 }
 
-//save data function
+// Read tasks from data/tasks.json.
+export async function readTasks(): Promise<Task[]> {
+  try {
+    const safePath = ensureSafeDataPath(tasksFilePath);
 
+    const fileContent = await readFile(safePath, "utf-8");
+
+    if (fileContent.trim() === "") {
+      return [];
+    }
+
+    const parsedData: unknown = JSON.parse(fileContent);
+
+    return tasksSchema.parse(parsedData);
+  } catch (error) {
+    console.error("readTasks failed:", error);
+
+    throw new Error("Unable to read the tasks data file.");
+  }
+}
+
+// Save tasks to data/tasks.json.
 export async function writeTasks(tasks: Task[]): Promise<void> {
+  try {
+    const safePath = ensureSafeDataPath(tasksFilePath);
 
     const validTasks = tasksSchema.parse(tasks);
+
     await writeFile(
-        tasksFilePath,
-        JSON.stringify(validTasks, null, 2), // Converts Array to ordered JSON text.  
-        "utf-8",  // encoding system
-      );
+      safePath,
+      JSON.stringify(validTasks, null, 2),
+      "utf-8",
+    );
+  } catch (error) {
+    console.error("writeTasks failed:", error);
+
+    throw new Error("Unable to save the tasks data file.");
+  }
 }
-
-
-
