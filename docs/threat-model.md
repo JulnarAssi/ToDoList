@@ -11,7 +11,7 @@
 ## Trust Boundaries
 
 - Model → tool arguments: all tool inputs are treated as untrusted.
-- Tool → filesystem: tools read from and write to `data/tasks.json`.
+- Tool → filesystem: `add_task`, `list_tasks`, and `complete_task` read from and/or write to `data/tasks.json`.
 - Tool → model response: tool output must be limited and safe to return.
 - The project currently does not make external network requests.
 
