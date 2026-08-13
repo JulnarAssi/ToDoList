@@ -21,3 +21,4 @@ This week we improved the MCP server by:
 - Returning short user-facing error messages while logging technical details to stderr.
 - Confirming that the project does not use API keys or external secrets.
 - Confirming that no network fetches are currently used, so host allowlisting and network timeouts are not required.
+- Strengthened `complete_task` task ID validation to require exactly 7 numeric digits.
