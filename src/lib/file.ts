@@ -1,5 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { resolve, sep } from "node:path";
 import { z } from "zod";
 
 // Each task must follow this structure.
@@ -21,6 +21,15 @@ const taskSchema = z.object({
   due_date: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Due date must use YYYY-MM-DD format.")
+    .refine((val) => {
+      const [year, month, day] = val.split("-").map(Number);
+      const date = new Date(Date.UTC(year, month - 1, day));
+      return (
+        date.getUTCFullYear() === year &&
+        date.getUTCMonth() === month - 1 &&
+        date.getUTCDate() === day
+      );
+    }, "Due date must be a real calendar date.")
     .optional(),
 });
 
@@ -38,7 +47,7 @@ const tasksFilePath = resolve(dataDirectory, "tasks.json");
 function ensureSafeDataPath(filePath: string): string {
   const resolvedPath = resolve(filePath);
 
-  if (!resolvedPath.startsWith(dataDirectory)) {
+  if (resolvedPath !== dataDirectory && !resolvedPath.startsWith(dataDirectory + sep)) {
     throw new Error("Unsafe file path rejected.");
   }
 
