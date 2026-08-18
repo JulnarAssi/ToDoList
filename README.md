@@ -1,167 +1,167 @@
-# MCPRepo — NextFlows Academy Starter
+# To-Do List MCP Server
 
-> Part of **[NextFlows Academy](https://nextflows.ai/academy)** — the free cohort program **Building an MCP for an AI Engine**.
+A Model Context Protocol (MCP) server for managing a simple to-do list.
 
-Clone this repo to build your **Model Context Protocol (MCP)** server in TypeScript. By Demo Day you will ship a public GitHub repo with real tools, Zod validation, docs, and a live demo — the same path used in the free NextFlows Academy cohort.
+The server allows an AI client to create, view, complete, search, update, and delete tasks using MCP tools. Tasks are stored locally in `data/tasks.json`.
 
-**Program hub:** [nextflows.ai/academy](https://nextflows.ai/academy)  
-**Full program page (in this repo):** [`docs/PROGRAM.md`](docs/PROGRAM.md)  
-**Apply:** [Cohort application](https://nextflows.ai/academy/apply?cohort=1&program=building-mcp-ai-engines)
+## Requirements
 
----
+Before running the project, make sure you have:
 
-## About NextFlows Academy
+- Node.js 20 or later
+- npm
+- Git
 
-[NextFlows Academy](https://nextflows.ai/academy) runs structured, cohort-based programs with live sessions, mentor support, and a real project you ship by the end.
-
-This repository belongs to:
-
-| | |
-| --- | --- |
-| **Program** | Building an MCP for an AI Engine |
-| **Audience** | 4th & 5th year CS / CE students |
-| **Duration** | 6 weeks |
-| **Format** | Cohort + project |
-| **Price** | Free |
-| **Level** | Intermediate |
-| **Outcome** | Shipped MCP server on GitHub |
-| **Schedule** | Wed & Sat online 1:30–3:30 PM + Monday on-site workshop days |
-
-You go from “what’s an MCP?” to a working MCP server connected to an AI engine (for example Claude), fully documented, and live on GitHub.
-
-See [`docs/PROGRAM.md`](docs/PROGRAM.md) for outcomes, weekly plan, starter projects, and who it’s for.
-
----
-
-## What you get
-
-| Path | Purpose |
-| --- | --- |
-| `src/index.ts` | MCP server + stdio transport |
-| `src/tools/` | One register helper per tool |
-| `src/schemas/` | Zod input contracts (with `.describe(...)`) |
-| `examples/` | Sample JSON args for Inspector |
-| `docs/PROGRAM.md` | Full NextFlows Academy program page |
-| `docs/WEEK-2.md` | Full Week 2 step-by-step plan |
-| `docs/CURRICULUM.md` | 6-week overview |
-| `docs/project-choice.md` | Week 2 project choice template |
-| `docs/design.md` | Week 2 design doc template |
-
-**Week 1 is already wired:** a working `greet` tool so you can open Inspector on day one.
-
-**Week 2 examples included:** stub tools for *Notes & FAQ Search* (`search_notes`, `list_notes`, `add_note`). Enable them when you pick that starter (or copy the pattern for your own idea).
-
-## Prerequisites
-
-- Node.js **20+** (`node -v`)
-- npm (`npm -v`)
-- Git + a GitHub account
-- Cursor or VS Code
-
-## Quick start
+You can check your versions with:
 
 ```bash
-git clone <YOUR_FORK_OR_ORG_URL>/MCPRepo.git
-cd MCPRepo
-npm install
-npm run inspect
+node -v
+npm -v
+git --version
 ```
 
-In the Inspector browser tab:
+## Install
 
-1. Click **Connect**
-2. Open **Tools**
-3. Select `greet` and put `Alex` in the **name** field (see `examples/greet.json` for the full args shape)
-4. Try invalid input (empty name) and confirm Zod rejects it
+Clone the repository:
 
-To run the server alone (waits on stdin):
+```bash
+git clone https://github.com/JulnarAssi/ToDoList.git
+cd ToDoList
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+## Run
+
+To start the MCP server:
 
 ```bash
 npm run dev
 ```
 
-> **Important:** log only with `console.error`. Never use `console.log` — stdout is reserved for the MCP protocol.
+The server uses stdio transport and waits for an MCP client connection.
 
-## Week 2
-
-Week 2 is design-first. Follow [`docs/WEEK-2.md`](docs/WEEK-2.md).
-
-Useful scripts:
-
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Start the MCP server on stdio (stays alive; stop with Ctrl+C) |
-| `npm start` | Same as `dev` |
-| `npm run inspect` | Open MCP Inspector against this server |
-
-## Stack
-
-- TypeScript via `tsx` (no build step early on)
-- Official MCP TypeScript SDK (`@modelcontextprotocol/server`)
-- Zod for tool `inputSchema`
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) for local testing
-- stdio transport for Claude Desktop / Cursor demos
-
-## Six-week journey
-
-| Week | Focus |
-| --- | --- |
-| 1 | Set up & first MCP tool (`greet` ✅ in this repo) |
-| 2 | Design your own tools → see [`docs/WEEK-2.md`](docs/WEEK-2.md) |
-| 3 | Connect tools to real data |
-| 4 | Make it safe & reliable |
-| 5 | Test & write docs people can follow |
-| 6 | Ship on GitHub & Demo Day |
-
-Full program details: [`docs/PROGRAM.md`](docs/PROGRAM.md)
-
-## Starter project options (pick in Week 2)
-
-1. **Notes & FAQ Search** — fully offline (example stubs included)
-2. **Personal Expense Tracker** — summarize spending from a spreadsheet
-3. **To-Do List** — create / list / complete tasks
-4. **Weather Briefing** — free API (e.g. Open-Meteo), no paid keys
-5. **Quote of the Day** — simple offline or public API
-
-Advanced ideas (repo health, course planner, job tracker) need **mentor approval** before you expand scope.
-
-## Repo layout after Week 2
+To stop the server, press:
 
 ```text
-MCPRepo/
-├── docs/
-│   ├── PROGRAM.md
-│   ├── CURRICULUM.md
-│   ├── WEEK-2.md
-│   ├── project-choice.md
-│   └── design.md
-├── examples/
-│   └── <tool_name>.json
-├── src/
-│   ├── index.ts
-│   ├── schemas/
-│   └── tools/
-├── package.json
-└── README.md
+Ctrl + C
 ```
 
-## Rules that matter
+## Run with MCP Inspector
 
-- One job per tool; use `verb_noun` names (`search_notes`, `add_expense`)
-- Write descriptions for the **model**, not only for humans
-- Every Zod field needs `.describe(...)`
-- Prefer small focused tools over one mega-tool with an `action` enum
-- Avoid paid APIs / OAuth-heavy projects in Weeks 1–2
+MCP Inspector can be used to test the tools locally.
 
-## Links
+Run:
 
-- [NextFlows Academy](https://nextflows.ai/academy)
-- [Program page (this repo)](docs/PROGRAM.md)
-- [Apply for Cohort #1](https://nextflows.ai/academy/apply?cohort=1&program=building-mcp-ai-engines)
-- [MCP docs](https://modelcontextprotocol.io/docs)
-- [MCP specification](https://modelcontextprotocol.io/specification/latest)
-- [Build your first server (TypeScript SDK)](https://ts.sdk.modelcontextprotocol.io/v2/get-started/first-server.html)
+```bash
+npm run inspect
+```
+
+The Inspector should open in your browser.
+
+In MCP Inspector:
+
+1. Connect to the server if needed.
+2. Open the **Tools** tab.
+3. Select a tool.
+4. Enter the required input.
+5. Click **Run Tool** or **Execute**.
+6. Check the returned result.
+
+## Available Tools
+
+| Tool | Description |
+| --- | --- |
+| `add_task` | Create a new task with a title and optional task information. |
+| `list_tasks` | Return tasks currently stored in the to-do list. |
+| `complete_task` | Mark an existing task as completed using its task ID. |
+| `search_task` | Search stored tasks using a keyword in the task title. |
+| `update_task` | Update an existing task. |
+| `delete_task` | Delete an existing task. |
+
+## Example Prompts
+
+Here are some examples of requests that can use the tools:
+
+### Add a task
+
+> Add a high-priority task called "Finish Week 5 report".
+
+### List tasks
+
+> Show me my current tasks.
+
+### Complete a task
+
+> Mark the task with ID 1220675 as completed.
+
+### Search tasks
+
+> Search my tasks for "Week 5".
+
+### Update a task
+
+> Update one of my existing tasks.
+
+### Delete a task
+
+> Delete a task from my to-do list.
+
+## Data Storage
+
+Tasks are stored locally in:
+
+```text
+data/tasks.json
+```
+
+The project does not require an external database or network service for task storage.
+
+## Troubleshooting
+
+### 1. `npm: command not found`
+
+Node.js and npm may not be installed correctly.
+
+Check:
+
+```bash
+node -v
+npm -v
+```
+
+Install Node.js 20 or later, then try again.
+
+### 2. MCP Inspector does not start
+
+Make sure the dependencies are installed:
+
+```bash
+npm install
+```
+
+Then run:
+
+```bash
+npm run inspect
+```
+
+### 3. Failed to load tasks
+
+Make sure `data/tasks.json` exists and contains valid JSON.
+
+For example:
+
+```json
+[]
+```
+
+A missing file or invalid JSON syntax can prevent the tools from loading task data.
 
 ## License
 
-MIT — built for [NextFlows Academy](https://nextflows.ai/academy) students.
+This project is licensed under the MIT License.
