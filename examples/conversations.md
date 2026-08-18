@@ -88,3 +88,36 @@ Arguments:
 ### Good Final Answer
 
 Done! I found your MCP report task and marked it as completed.
+
+---
+
+## Conversation D — Delete a Task
+
+### User Prompt
+
+Please delete the task about the AI training report from my list.
+
+### Expected Tool Calls
+
+The model does not know the task ID yet, so it should first search for the task.
+
+First call:
+
+`search_task`
+
+Arguments:
+
+- Search for a keyword related to "AI training report"
+
+After finding the matching task, the model should take its returned task ID
+and call:
+
+`delete_task`
+
+Arguments:
+
+- `id`: the 7-digit ID returned by `search_task`
+
+### Good Final Answer
+
+Done! I found your AI training report task and removed it from your list.
