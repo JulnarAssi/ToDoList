@@ -121,6 +121,11 @@ data/tasks.json
 
 The project does not require an external database or network service for task storage.
 
+## Example Conversations
+
+See [`examples/conversations.md`](examples/conversations.md) for sample user conversations showing the expected MCP tool calls and final assistant responses.
+
+
 ## Troubleshooting
 
 ### 1. `npm: command not found`
