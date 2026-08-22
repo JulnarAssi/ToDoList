@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
 // Each task must follow this structure.
@@ -28,8 +29,12 @@ const tasksSchema = z.array(taskSchema);
 
 export type Task = z.infer<typeof taskSchema>;
 
-// Allowed data directory.
-const dataDirectory = resolve(process.cwd(), "data");
+// Get the absolute location of this file.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// src/lib/file.ts -> project root -> data/
+const dataDirectory = resolve(__dirname, "..", "..", "data");
 
 // Fixed tasks file.
 const tasksFilePath = resolve(dataDirectory, "tasks.json");
