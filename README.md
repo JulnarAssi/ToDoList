@@ -8,7 +8,6 @@ The server allows an AI client to create, view, complete, search, update, and de
 
 ![To-Do List MCP Demo](docs/assets/demo.gif)
 
-
 ## Requirements
 
 Before running the project, make sure you have:
@@ -87,6 +86,43 @@ In MCP Inspector:
 | `search_task` | Search stored tasks using a keyword in the task title. |
 | `update_task` | Update an existing task. |
 | `delete_task` | Delete an existing task. |
+| `create_calendar_event` | Create a real event in the user's Google Calendar. |
+
+## Google Calendar Integration
+
+This project integrates with the Google Calendar API using OAuth 2.0.
+
+The `create_calendar_event` tool allows the MCP server to create real events in the user's primary Google Calendar.
+
+For example, a user can ask:
+
+> Schedule "Prepare Demo Day" tomorrow from 4 PM to 5 PM.
+
+The AI converts the request into the structured date and time format required by the tool, and the event is then created in Google Calendar.
+
+### Google Calendar Setup
+
+To use the Google Calendar integration:
+
+1. Create a project in Google Cloud.
+2. Enable the Google Calendar API.
+3. Configure OAuth 2.0 and create a Desktop App OAuth client.
+4. Download the OAuth credentials file.
+5. Create a `.secrets` directory in the project and save the credentials file as:
+
+```text
+.secrets/google-calendar-oauth.json
+```
+
+6. Authorize the application by running:
+
+```bash
+npx tsx scripts/google-auth.ts
+```
+
+After authorization, the OAuth token is stored locally inside the `.secrets/` directory.
+
+The `.secrets/` directory is ignored by Git and must never be committed.
 
 ## Example Prompts
 
@@ -116,6 +152,10 @@ Here are some examples of requests that can use the tools:
 
 > Delete a task from my to-do list.
 
+### Create a Calendar Event
+
+> Schedule "Prepare Demo Day" tomorrow from 4 PM to 5 PM.
+
 ## Data Storage
 
 Tasks are stored locally in:
@@ -124,12 +164,13 @@ Tasks are stored locally in:
 data/tasks.json
 ```
 
-The project does not require an external database or network service for task storage.
+The project does not require an external database for task storage.
+
+Google Calendar events are created through the Google Calendar API and are stored in the user's Google Calendar.
 
 ## Example Conversations
 
 See [`examples/conversations.md`](examples/conversations.md) for sample user conversations showing the expected MCP tool calls and final assistant responses.
-
 
 ## Troubleshooting
 
@@ -171,6 +212,21 @@ For example:
 ```
 
 A missing file or invalid JSON syntax can prevent the tools from loading task data.
+
+### 4. Google Calendar authorization fails
+
+Make sure:
+
+- The Google Calendar API is enabled in your Google Cloud project.
+- You created a Desktop App OAuth client.
+- Your OAuth credentials are saved as `.secrets/google-calendar-oauth.json`.
+- Your Google account is added as a test user if the OAuth application is still in testing mode.
+
+Then run:
+
+```bash
+npx tsx scripts/google-auth.ts
+```
 
 ## License
 
