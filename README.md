@@ -4,6 +4,11 @@ A Model Context Protocol (MCP) server for managing a simple to-do list.
 
 The server allows an AI client to create, view, complete, search, update, and delete tasks using MCP tools. Tasks are stored locally in `data/tasks.json`.
 
+## Demo
+
+![To-Do List MCP Demo](docs/assets/demo.gif)
+
+
 ## Requirements
 
 Before running the project, make sure you have:
