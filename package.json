@@ -1,8 +1,8 @@
 {
-  "name": "mcprepo",
-  "version": "0.1.0",
+  "name": "todo-list-mcp",
+  "version": "1.0.0",
   "private": true,
-  "description": "NextFlows Academy starter — build an MCP server in TypeScript (Weeks 1–6)",
+  "description": "A Model Context Protocol (MCP) server for managing a local to-do list through AI tools.",
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
@@ -15,8 +15,9 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "nextflows",
-    "academy"
+    "todo",
+    "task-management",
+    "typescript"
   ],
   "license": "MIT",
   "dependencies": {
