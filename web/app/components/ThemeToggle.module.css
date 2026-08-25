@@ -1,0 +1,28 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--navy-3);
+  background: rgba(var(--paper-rgb), 0.02);
+  color: var(--text-muted);
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.toggle:hover {
+  border-color: var(--blue);
+  color: var(--blue-bright);
+  transform: translateY(-1px);
+}
+
+.toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.toggle[disabled] {
+  opacity: 0;
+}
