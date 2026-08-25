@@ -1,0 +1,86 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statement h2 {
+  font-size: clamp(26px, 3.2vw, 34px);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.statement p {
+  color: var(--ivory-dim);
+  font-size: 16px;
+  max-width: 46ch;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid var(--navy-3);
+  border-radius: 10px;
+  padding: 20px;
+  background: rgba(var(--surface-rgb), 0.4);
+}
+
+.cardBad {
+  opacity: 0.75;
+}
+
+.cardGood {
+  border-color: rgba(176, 35, 63, 0.45);
+  background: rgba(109, 15, 38, 0.1);
+}
+:global([data-theme="light"]) .cardGood {
+  border-color: rgba(25, 25, 112, 0.35);
+  background: rgba(17, 17, 84, 0.05);
+}
+
+.cardLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.cardGood .cardLabel {
+  color: var(--burgundy-bright);
+}
+
+.line {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--ivory-dim);
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--navy-3);
+}
+
+.line:last-child {
+  border-bottom: none;
+}
+
+.lineDone {
+  color: var(--dusty-bright);
+}

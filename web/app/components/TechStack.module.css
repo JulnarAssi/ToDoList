@@ -1,0 +1,29 @@
+.head {
+  margin-bottom: 18px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 9px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--navy-3);
+  color: var(--ivory-dim);
+  background: rgba(var(--paper-rgb), 0.02);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--blue);
+  color: var(--ivory);
+}

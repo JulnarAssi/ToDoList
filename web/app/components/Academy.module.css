@@ -1,0 +1,40 @@
+.card {
+  border: 1px solid var(--navy-3);
+  border-radius: 14px;
+  padding: 32px clamp(24px, 5vw, 44px);
+  background: rgba(var(--surface-rgb), 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 620px;
+}
+
+.heading {
+  font-size: clamp(20px, 2.4vw, 24px);
+}
+
+.copy {
+  color: var(--ivory-dim);
+  font-size: 15px;
+  max-width: 52ch;
+  margin-bottom: 4px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--blue-bright);
+  border: 1px solid var(--navy-3);
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.link:hover {
+  border-color: var(--blue);
+  color: var(--ivory);
+}
