@@ -4,6 +4,10 @@ A Model Context Protocol (MCP) server for managing a simple to-do list.
 
 The server allows an AI client to create, view, complete, search, update, and delete tasks using MCP tools. Tasks are stored locally in `data/tasks.json`.
 
+## Training:
+
+This project was developed as part of the [NextFlows Academy](https://nextflows.ai/academy) — Building an MCP for an AI Engine program.
+
 🌐 Live Website: https://to-do-list-six-opal-42.vercel.app/
 
 ## Demo
